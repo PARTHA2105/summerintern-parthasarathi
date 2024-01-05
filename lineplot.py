@@ -1,0 +1,176 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rc,rcParams
+
+fig=plt.figure(figsize=(25,8))
+z=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/northern offshore/chl_north_offshore.txt','r')
+y=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/northern offshore/npp_northern_offshore.txt','r')
+x=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/northern offshore/nitrate_northern offshore.txt','r')
+k=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/northern offshore/salinitynorthern_offshore_smos.txt','r')
+a=y.readlines()
+z1=z.readlines()
+x1=x.readlines()
+k1=k.readlines()
+plt.xlabel("Years",fontsize=16,fontweight="bold")
+host = fig.add_subplot(111)
+#host.set_ylim(0.1,10)
+par1 = host.twinx()
+par2 = host.twinx()
+par3 = host.twinx()
+
+b = np.arange(0,60,6)
+rc("font",weight='bold')
+#rcParams['text.laxex.preamble'] = [r'\usepackage{sfmath}\boldmath']
+#plt.xticks(b,("8","40","72","104","136","168","200","232","264","296","328","360"),fontsize=14)
+#plt.xticks(b,("Jan(1-8)","Feb(02-09)","Mar(06-13)","Apr(7-14)","May(9-16)","Jun(10-17)","Jul(12-19)","Aug(13-20)","Sep(14-21)","Oct(16-23)","Nov(17-24)","Dec(19-26)"),fontsize=14)
+plt.xticks(b,('Jan\n2014','Jun\n2014','Jan\n2015','Jun\n2015','Jan\n2016','Jun\n2016','Jan\n2017','Jun\n2017','Jan\n2018','Jun\n2018'))
+host.tick_params(axis=u'both',labelsize=16)
+host.grid(color='black',alpha=0.5, linewidth=0.6)
+ax1=host.plot(z1,lw=2.2,color='blue',label='CHL')
+host.set_ylim(0.01,0.5)
+#host.label1.set_fontweight('bold')
+host.set_ylabel('Chlorophyll-a',fontsize=16,fontweight='bold')
+r2=par1.plot(a, lw=2.2, color="red",label="NPP")
+
+par1.set_ylabel('NPP',fontsize=16,fontweight='bold')
+par1.tick_params(axis=u'both',labelsize=16)
+par1.set_ylim(500,900)
+r3=par2.plot(x1,lw=2.2,color='green',label='Nitrate',linestyle='dashed')
+par2.set_ylabel('Nitrate',fontsize=16,fontweight='bold')
+par2.tick_params(axis=u'both',labelsize=16)
+par2.set_ylim(0.5,3)
+r4=par3.plot(k1,lw=2.2,color='magenta',linestyle='dashed',label='SSS')
+par3.yaxis.tick_left()
+par3.set_ylabel('Salinity',fontsize=16,fontweight='bold')
+par3.yaxis.set_label_position("left")
+par3.tick_params(axis=u'both',labelsize=16)
+a=ax1+r2+r3+r4
+labs=[l.get_label() for l in a]
+plt.legend(a,labs,loc=0)
+par3.spines['left'].set_position(('axes',-0.06)) 
+par2.spines['right'].set_position(('outward', 70)) 
+host.set_title('Northern Offshore of Bay of Bengal',fontsize=20,fontweight="bold")
+host.text(12,0.43,"LAT=16N-18N",fontsize=16)
+host.text(12,0.4,"LON=90E-92E",fontsize=16)
+plt.show()
+plt.savefig("/scratch/Trainee_DATA/Ramya/study_area/lineplot_new/north_offshore_chl vs nitrate,npp,sss.png")
+
+**********************************
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rc,rcParams
+
+fig=plt.figure(figsize=(25,8))
+z=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/southern offshore/chl_south_offshore.txt','r')
+y=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/southern offshore/npp_southern_offshore.txt','r')
+x=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/southern offshore/nitratre_southern_offshore.txt','r')
+k=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/southern offshore/salinitysouthern_offshore_smos.txt','r')
+a=y.readlines()
+z1=z.readlines()
+x1=x.readlines()
+k1=k.readlines()
+plt.xlabel("Years",fontsize=16,fontweight="bold")
+host = fig.add_subplot(111)
+#host.set_ylim(0.1,10)
+par1 = host.twinx()
+par2 = host.twinx()
+par3 = host.twinx()
+
+b = np.arange(0,60,6)
+rc("font",weight='bold')
+#rcParams['text.laxex.preamble'] = [r'\usepackage{sfmath}\boldmath']
+#plt.xticks(b,("8","40","72","104","136","168","200","232","264","296","328","360"),fontsize=14)
+#plt.xticks(b,("Jan(1-8)","Feb(02-09)","Mar(06-13)","Apr(7-14)","May(9-16)","Jun(10-17)","Jul(12-19)","Aug(13-20)","Sep(14-21)","Oct(16-23)","Nov(17-24)","Dec(19-26)"),fontsize=14)
+plt.xticks(b,('Jan\n2014','Jun\n2014','Jan\n2015','Jun\n2015','Jan\n2016','Jun\n2016','Jan\n2017','Jun\n2017','Jan\n2018','Jun\n2018'))
+host.tick_params(axis=u'both',labelsize=16)
+host.grid(color='black',alpha=0.5, linewidth=0.6)
+ax1=host.plot(z1,lw=2.2,color='blue',label='CHL')
+host.set_ylim(0.01,1.5)
+#host.label1.set_fontweight('bold')
+host.set_ylabel('Chlorophyll-a',fontsize=16,fontweight='bold')
+r2=par1.plot(a, lw=2.2, color="red",label="NPP")
+
+par1.set_ylabel('NPP',fontsize=16,fontweight='bold')
+par1.tick_params(axis=u'both',labelsize=16)
+#par1.set_ylim(500,900)
+r3=par2.plot(x1,lw=2.2,color='green',label='Nitrate',linestyle='dashed')
+par2.set_ylabel('Nitrate',fontsize=16,fontweight='bold')
+par2.tick_params(axis=u'both',labelsize=16)
+par2.set_ylim(0.5,3)
+r4=par3.plot(k1,lw=2.2,color='magenta',linestyle='dashed',label='SSS')
+par3.yaxis.tick_left()
+par3.set_ylabel('Salinity',fontsize=16,fontweight='bold')
+par3.yaxis.set_label_position("left")
+par3.tick_params(axis=u'both',labelsize=16)
+a=ax1+r2+r3+r4
+labs=[l.get_label() for l in a]
+plt.legend(a,labs,loc=0)
+par3.spines['left'].set_position(('axes',-0.06)) 
+par2.spines['right'].set_position(('outward', 70)) 
+host.set_title('Southern Offshore of Bay of Bengal',fontsize=20,fontweight="bold")
+host.text(12,1.38,"LAT=8N-10N",fontsize=16)
+host.text(12,1.30,"LON=86E-88E",fontsize=16)
+plt.show()
+plt.savefig("/scratch/Trainee_DATA/Ramya/study_area/lineplot_new/south_offshore_chl vs nitrate,npp,sss.png")
+
+
+
+
+****************************************************************8
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rc,rcParams
+
+fig=plt.figure(figsize=(25,8))
+z=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/southern_coast/chl_south_coast.txt','r')
+y=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/southern_coast/npp_southern_coast.txt','r')
+x=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/southern_coast/nitrate_southern_coast.txt','r')
+k=open('/scratch/Trainee_DATA/Ramya/merged/Subsets/southern_coast/salinitysouthern_coast_smos.txt','r')
+a=y.readlines()
+z1=z.readlines()
+x1=x.readlines()
+k1=k.readlines()
+plt.xlabel("Years",fontsize=16,fontweight="bold")
+host = fig.add_subplot(111)
+#host.set_ylim(0.1,10)
+par1 = host.twinx()
+par2 = host.twinx()
+par3 = host.twinx()
+
+b = np.arange(0,60,6)
+rc("font",weight='bold')
+#rcParams['text.laxex.preamble'] = [r'\usepackage{sfmath}\boldmath']
+#plt.xticks(b,("8","40","72","104","136","168","200","232","264","296","328","360"),fontsize=14)
+#plt.xticks(b,("Jan(1-8)","Feb(02-09)","Mar(06-13)","Apr(7-14)","May(9-16)","Jun(10-17)","Jul(12-19)","Aug(13-20)","Sep(14-21)","Oct(16-23)","Nov(17-24)","Dec(19-26)"),fontsize=14)
+plt.xticks(b,('Jan\n2014','Jun\n2014','Jan\n2015','Jun\n2015','Jan\n2016','Jun\n2016','Jan\n2017','Jun\n2017','Jan\n2018','Jun\n2018'))
+host.tick_params(axis=u'both',labelsize=16)
+host.grid(color='black',alpha=0.5, linewidth=0.6)
+ax1=host.plot(z1,lw=2.2,color='blue',label='CHL')
+host.set_ylim(0.01,1)
+#host.label1.set_fontweight('bold')
+host.set_ylabel('Chlorophyll-a',fontsize=16,fontweight='bold')
+r2=par1.plot(a, lw=2.2, color="red",label="NPP")
+
+par1.set_ylabel('NPP',fontsize=16,fontweight='bold')
+par1.tick_params(axis=u'both',labelsize=16)
+#par1.set_ylim(500,900)
+r3=par2.plot(x1,lw=2.2,color='green',label='Nitrate',linestyle='dashed')
+par2.set_ylabel('Nitrate',fontsize=16,fontweight='bold')
+par2.tick_params(axis=u'both',labelsize=16)
+#par2.set_ylim(0.5,3)
+r4=par3.plot(k1,lw=2.2,color='magenta',linestyle='dashed',label='SSS')
+par3.yaxis.tick_left()
+par3.set_ylabel('Salinity',fontsize=16,fontweight='bold')
+par3.yaxis.set_label_position("left")
+par3.tick_params(axis=u'both',labelsize=16)
+par3.set_ylim(30,35)
+a=ax1+r2+r3+r4
+labs=[l.get_label() for l in a]
+plt.legend(a,labs,loc=0)
+par3.spines['left'].set_position(('axes',-0.06)) 
+par2.spines['right'].set_position(('outward', 70)) 
+host.set_title('Southern Coast of Bay of Bengal',fontsize=20,fontweight="bold")
+host.text(12,0.85,"LAT=10N-12N",fontsize=16)
+host.text(12,0.8,"LON=80E-82E",fontsize=16)
+plt.show()
+plt.savefig("/scratch/Trainee_DATA/Ramya/study_area/lineplot_new/south_coast_chl vs nitrate,npp,sss.png")
